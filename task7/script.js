@@ -1,40 +1,71 @@
 
-const posts = [
-    {
-        id: 1,
-        title: "مقدمة في تطوير الويب الحديث",
-        content: "تطوير الويب الحديث يتطلب فهم عميق لتقنيات الواجهات الأمامية والخلفية وكيفية تفاعلهما معاً.",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085" // مقال مع صورة
-    },
-    {
-        id: 2,
-        title: "أساسيات لغة جافا سكربت للمبتدئين",
-        content: "جافا سكربت هي لغة البرمجة التي تمنح صفحات الويب الحيوية والتفاعل مع المستخدم.",
-        image: null
-    },
-    {
-        id: 3,
-        title: "أهمية التصميم المتجاوب في الهواتف",
-        content: "مع كثرة مستخدمي الهواتف الذكية، أصبح التصميم المتجاوب أمراً لا غنى عنه لأي موقع ناجح.",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5"
-    },
-    {
-        id: 4,
-        title: " نصائح لتحسين أداء وقوة مواقع الويب ",
-        content: "سرعة تحميل الموقع تلعب دوراً أساسياً في بقاء المستخدمين وتحسين ظهور الموقع في محركات البحث.",
-        image: null
+// const products = [
+//     { name: "سماعة بلوتوث", price: 45, rating: 6 },
+//     { name: "ساعة ذكية", price: 120, rating: 2.8 }, // تقييم أقل من 3 (لن تظهر)
+//     { name: "لابتوب جيمينغ", price: 850, rating: 4.9 },
+//     { name: "حذاء رياضي", price: 60, rating: 3.2 },
+//     { name: "حقيبة ظهر", price: 35, rating: 2.1 },  // تقييم أقل من 3 (لن تظهر)
+//     { name: "شاحن متنقل", price: 25, rating: 3.8 }
+// ];
+
+
+// for (let i = 0; i < products.length; i++) {
+//     let currentProduct = products[i];
+
+
+//     if (currentProduct.rating > 3) {
+
+
+//         let starsCount = Math.floor(currentProduct.rating);
+
+
+//         let starsString = "⭐".repeat(starsCount);
+
+
+//         console.log(`اسم المنتج: ${currentProduct.name} | السعر: $${currentProduct.price} | التقييم: ${currentProduct.rating} | النجوم: ${starsString}`);
+//     }
+// }
+
+
+// الكود التاني
+
+
+
+
+let savedProducts = localStorage.getItem("myProductsList");
+let products = savedProducts ? JSON.parse(savedProducts) : [];
+
+let prodName = prompt("أدخل اسم المنتج الجديد:");
+
+if (prodName) {
+    let prodPrice = Number(prompt("أدخل سعر المنتج:"));
+    let prodRating = Number(prompt("أدخل تقييم المنتج (من 1 إلى 5):"));
+
+    let newProduct = {
+        name: prodName,
+        price: prodPrice,
+        rating: prodRating
+    };
+
+    
+    products.push(newProduct);
+
+   
+    localStorage.setItem("myProductsList", JSON.stringify(products));
+    console.log("💾 تم إضافة وحفظ المنتج الجديد بنجاح!");
+}
+
+
+console.log("\n--- قائمة جميع المنتجات الحالية ---");
+for (let i = 0; i < products.length; i++) {
+    let currentProduct = products[i];
+
+    if (currentProduct.rating > 3) {
+        let starsCount = Math.floor(currentProduct.rating);
+        let starsString = "⭐".repeat(starsCount);
+
+        console.log(`[المنتج ${i + 1}] الاسم: ${currentProduct.name} | السعر: $${currentProduct.price} | التقييم: ${currentProduct.rating} | النجوم: ${starsString}`);
+    } else {
+        console.log(`[المنتج ${i + 1}] الاسم: ${currentProduct.name} | السعر: $${currentProduct.price} | التقييم: ${currentProduct.rating} (أقل من أو يساوي 3)`);
     }
-];
-
-
-posts.forEach(post => {
-    console.log(`--- مقال رقم: ${post.id} ---`);
-    console.log(`العنوان: ${post.title}`);
-    console.log(`المحتوى: ${post.content}`);
-    console.log(`صورة المقال: [تم العرض] -> ${post.image ?? 'default image'}`);
-
-
-  
-
-    console.log("------------------------\n");
-});
+}

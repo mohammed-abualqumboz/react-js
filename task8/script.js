@@ -1,25 +1,40 @@
 
-let userInput = prompt("Please enter a number to calculate the factorial.");
-
-let number = Number(userInput);
-
-
-if (userInput === null || userInput.trim() === "" || isNaN(number)) {
-    console.log("Error: Please enter a valid number!");
-} else if (number < 0) {
-    console.log("Error: The mathematical factorial is undefined for negative numbers.");
-} else {
-
-    let factorial = 1;
-    let steps = [];
-
-    for (let i = number; i >= 1; i--) {
-        factorial *= i;
-        steps.push(i);
+const posts = [
+    {
+        id: 1,
+        title: "مقدمة في تطوير الويب الحديث",
+        content: "تطوير الويب الحديث يتطلب فهم عميق لتقنيات الواجهات الأمامية والخلفية وكيفية تفاعلهما معاً.",
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085" // مقال مع صورة
+    },
+    {
+        id: 2,
+        title: "أساسيات لغة جافا سكربت للمبتدئين",
+        content: "جافا سكربت هي لغة البرمجة التي تمنح صفحات الويب الحيوية والتفاعل مع المستخدم.",
+        image: null
+    },
+    {
+        id: 3,
+        title: "أهمية التصميم المتجاوب في الهواتف",
+        content: "مع كثرة مستخدمي الهواتف الذكية، أصبح التصميم المتجاوب أمراً لا غنى عنه لأي موقع ناجح.",
+        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5"
+    },
+    {
+        id: 4,
+        title: " نصائح لتحسين أداء وقوة مواقع الويب ",
+        content: "سرعة تحميل الموقع تلعب دوراً أساسياً في بقاء المستخدمين وتحسين ظهور الموقع في محركات البحث.",
+        image: null
     }
+];
 
 
-    console.log(`Entered number:  ${number} `);
-    console.log(`Multiplication operation:   ${steps.join(" * ")}`);
-    console.log(`The final result of the mathematical product: ${factorial}`);
-}
+posts.forEach(post => {
+    console.log(`--- مقال رقم: ${post.id} ---`);
+    console.log(`العنوان: ${post.title}`);
+    console.log(`المحتوى: ${post.content}`);
+    console.log(`صورة المقال: [تم العرض] -> ${post.image ?? 'default image'}`);
+
+
+  
+
+    console.log("------------------------\n");
+});

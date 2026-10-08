@@ -1,37 +1,26 @@
-let userInput = prompt("Please enter a number to calculate the factorial.");
 
-let number = Number(userInput);
+let myText = "To my dear brother and friend, the esteemed Engineer Abu Zain: I write these words from the heart to salute your tremendous strides and your tireless ambition. As you have always been a pillar of support and a wonderful companion on the arduous journey of knowledge, I wish you every success in every step you take toward a flourishing, bright future worthy of your high standing."
+function truncateText(text) {
 
+    if (text.length > 200) {
+    
+        let first20 = text.slice(0, 20);
 
-function calculateFactorialRecursive(n, stepsArray = []) {
-    // شرط التوقف (Base Case): إذا وصل الرقم إلى 1 أو 0
-    if (n === 0 || n === 1) {
-        stepsArray.push(1);
-        return { result: 1, steps: stepsArray };
+       
+        let last20 = text.slice(-20);
+
+        
+        let middleLength = text.length - 40; 
+        let dots = ".".repeat(middleLength); 
+
+        // دمج الأجزاء معاً
+        return first20 + dots + last20;
     }
 
-
-    stepsArray.push(n);
-
-    let recursiveResult = calculateFactorialRecursive(n - 1, stepsArray);
-
-
-    return {
-        result: n * recursiveResult.result,
-        steps: recursiveResult.steps
-    };
+    return text;
 }
 
-if (userInput === null || userInput.trim() === "" || isNaN(number)) {
-    console.log("Error: Please enter a valid number!");
-} else if (number < 0) {
-    console.log("Error: The mathematical factorial is undefined for negative numbers.");
-} else {
 
-    let calculation = calculateFactorialRecursive(number);
-
-
-    console.log(`Entered number: ${number}`);
-    console.log(`Multiplication operation: ${calculation.steps.join(" * ")}`);
-    console.log(`The final result of the mathematical product: ${calculation.result}`);
-}
+let result = truncateText(myText);
+console.log("طول النص الأصلي:", myText.length);
+console.log("النتيجة:", result);

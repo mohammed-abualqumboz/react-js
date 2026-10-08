@@ -1,63 +1,25 @@
 
+let userInput = prompt("Please enter a number to calculate the factorial.");
+
+let number = Number(userInput);
 
 
-
-let countInput = prompt("How many products do you want to buy?");
-let numProducts = parseInt(countInput);
-
-if (isNaN(numProducts) || numProducts <= 0) {
-    console.log("Please enter a valid number.");
+if (userInput === null || userInput.trim() === "" || isNaN(number)) {
+    console.log("Error: Please enter a valid number!");
+} else if (number < 0) {
+    console.log("Error: The mathematical factorial is undefined for negative numbers.");
 } else {
-    let subtotal = 0;
-    let itemsWithDiscountCount = 0;
 
-    console.log("=== Starting product entry ===");
+    let factorial = 1;
+    let steps = [];
 
-
-    for (let i = 1; i <= numProducts; i++) {
-        let name = prompt(`Enter product name/number${i}:`);
-        let price = parseFloat(prompt(`Enter the product price(${name}):`));
-        let quantity = parseInt(prompt(`Enter the product quantity(${name}):`));
-
-        let itemTotal = price * quantity;
-        let hasItemDiscount = false;
-
-
-        if (quantity > 10) {
-            let discount = itemTotal * 0.10;
-            itemTotal = itemTotal - discount;
-            itemsWithDiscountCount++;
-            hasItemDiscount = true;
-        }
-
-        subtotal += itemTotal;
-
-
-        console.log(`المنتج ${i}: ${name} | الكمية: ${quantity} | السعر بعد الخصم: ${itemTotal.toFixed(2)} ${hasItemDiscount ? '[تم تطبيق خصم 10%]' : ''}`);
-    }
-
-    let finalTotal = subtotal;
-    let extraDiscountApplied = false;
-
-    if (subtotal > 500) {
-        if (itemsWithDiscountCount < 2) {
-            let extraDiscount = subtotal * 0.20;
-            finalTotal = subtotal - extraDiscount;
-            extraDiscountApplied = true;
-        }
+    for (let i = number; i >= 1; i--) {
+        factorial *= i;
+        steps.push(i);
     }
 
 
-    console.log("---------------------------------");
-    console.log(`Total after product discounts: ${subtotal.toFixed(2)}`);
-
-    if (extraDiscountApplied) {
-        console.log(`An additional 20% discount has been applied. (Total > 500 and number of products with volume discount = ${itemsWithDiscountCount}).`);
-    } else if (subtotal > 500) {
-        console.log(`The additional 20% discount was not applied due to the presence of...${itemsWithDiscountCount}Products eligible for a quantity discount.`);
-    }
-
-    console.log("=================================");
-    console.log(`Final total amount to be paid:${finalTotal.toFixed(2)}`);
-    console.log("=================================");
+    console.log(`Entered number:  ${number} `);
+    console.log(`Multiplication operation:   ${steps.join(" * ")}`);
+    console.log(`The final result of the mathematical product: ${factorial}`);
 }

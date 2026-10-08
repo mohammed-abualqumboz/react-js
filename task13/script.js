@@ -1,38 +1,37 @@
+let userInput = prompt("Please enter a number to calculate the factorial.");
 
-let targetNumber = Math.floor(Math.random() * 50) + 1;
-
-let guessedCorrectly = false;
-let attempts = 0;
+let number = Number(userInput);
 
 
-while (!guessedCorrectly) {
-    let userInput = prompt("Guess the number! Enter a number between 1 and 50:");
-
-
-    if (userInput === null) {
-        alert("The game has been cancelled.");
-        break;
+function calculateFactorialRecursive(n, stepsArray = []) {
+    // شرط التوقف (Base Case): إذا وصل الرقم إلى 1 أو 0
+    if (n === 0 || n === 1) {
+        stepsArray.push(1);
+        return { result: 1, steps: stepsArray };
     }
 
-    let userGuess = Number(userInput);
+
+    stepsArray.push(n);
+
+    let recursiveResult = calculateFactorialRecursive(n - 1, stepsArray);
 
 
-    if (isNaN(userGuess) || userInput.trim() === "") {
-        alert("Error: Please enter a valid and acceptable number!");
-        continue;
-    }
+    return {
+        result: n * recursiveResult.result,
+        steps: recursiveResult.steps
+    };
+}
 
-    attempts++;
+if (userInput === null || userInput.trim() === "" || isNaN(number)) {
+    console.log("Error: Please enter a valid number!");
+} else if (number < 0) {
+    console.log("Error: The mathematical factorial is undefined for negative numbers.");
+} else {
 
-    if (userGuess < targetNumber) {
-        alert("Higher! The secret number is greater than your guess.📈");
-    } else if (userGuess > targetNumber) {
-        alert("Lower! The secret number is smaller than your guess.📉");
-    } else {
-        guessedCorrectly = true;
-
-        alert(`The correct number has been guessed. ${targetNumber}  ${attempts}`)
+    let calculation = calculateFactorialRecursive(number);
 
 
-    }
+    console.log(`Entered number: ${number}`);
+    console.log(`Multiplication operation: ${calculation.steps.join(" * ")}`);
+    console.log(`The final result of the mathematical product: ${calculation.result}`);
 }

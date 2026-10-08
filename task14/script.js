@@ -1,37 +1,38 @@
 
-let choices = ["حجر", "ورقة", "مقص"];
+let targetNumber = Math.floor(Math.random() * 50) + 1;
+
+let guessedCorrectly = false;
+let attempts = 0;
 
 
-let computerChoice = choices[Math.floor(Math.random() * choices.length)];
+while (!guessedCorrectly) {
+    let userInput = prompt("Guess the number! Enter a number between 1 and 50:");
 
 
-let userInput = prompt("اختر واحدة مما يلي: (حجر، ورقة، مقص)");
+    if (userInput === null) {
+        alert("The game has been cancelled.");
+        break;
+    }
+
+    let userGuess = Number(userInput);
 
 
-if (userInput === null) {
-    alert("تم إلغاء اللعبة.");
-} else {
-  
-    let userChoice = userInput.trim();
+    if (isNaN(userGuess) || userInput.trim() === "") {
+        alert("Error: Please enter a valid and acceptable number!");
+        continue;
+    }
 
+    attempts++;
 
-    if (!choices.includes(userChoice)) {
-        alert("خطأ: المدخل غير صحيح! يجب أن تختار إما (حجر، ورقة، أو مقص) فقط.");
+    if (userGuess < targetNumber) {
+        alert("Higher! The secret number is greater than your guess.📈");
+    } else if (userGuess > targetNumber) {
+        alert("Lower! The secret number is smaller than your guess.📉");
     } else {
+        guessedCorrectly = true;
 
-        let resultMessage = `اختيارك: ${userChoice}\nاختيار الجهاز: ${computerChoice}\n\n`;
+        alert(`The correct number has been guessed. ${targetNumber}  ${attempts}`)
 
-    
-        if (userChoice === computerChoice) {
-            alert(resultMessage + "إها تعادل! نفس الاختيار 🤝");
-        } else if (
-            (userChoice === "حجر" && computerChoice === "مقص") ||
-            (userChoice === "ورقة" && computerChoice === "حجر") ||
-            (userChoice === "مقص" && computerChoice === "ورقة")
-        ) {
-            alert(resultMessage + "مبروك لقد فزت في اللعبة  🎉 (الورقة تغلف الحجر، الحجر يكسر المقص، المقص يقطع الورقة).");
-        } else {
-            alert(resultMessage + "هذه المرة خسرت! الجهاز فاز عليك 🤖 حاول مرة أخرى.");
-        }
+
     }
 }

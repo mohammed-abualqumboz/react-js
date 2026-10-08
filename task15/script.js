@@ -1,46 +1,37 @@
 
-let blockedKeywords = [
-    "Number",
-    "Communication",
-    "WhatsApp",
-    "Telegram",
-    "Outside",
-    "Your Number",
-    "We stay in touch.",
-    "Your phone",
-    "Email",
-    "Viber"
-];
+let choices = ["حجر", "ورقة", "مقص"];
 
-// 2. إدخال جملة المستخدم عبر الـ prompt
-let userMessage = prompt("Enter your message or offer for the customer: ");
 
-if (userMessage === null || userMessage.trim() === "") {
-    console.log("No message was entered.");
+let computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+
+let userInput = prompt("اختر واحدة مما يلي: (حجر، ورقة، مقص)");
+
+
+if (userInput === null) {
+    alert("تم إلغاء اللعبة.");
 } else {
-
-    let text = userMessage.trim();
-    let foundMatchesCount = 0;
-    let matchedWordsList = [];
+  
+    let userChoice = userInput.trim();
 
 
-    for (let i = 0; i < blockedKeywords.length; i++) {
-        let keyword = blockedKeywords[i];
-
-
-        if (text.includes(keyword)) {
-            foundMatchesCount++;
-            matchedWordsList.push(keyword);
-        }
-    }
-
-
-    console.log(`النص المدخل: "${text}"`);
-    console.log(`Number of detected prohibited words: ${foundMatchesCount} (${matchedWordsList.join(", ")})`);
-
-    if (foundMatchesCount >= 2) {
-        console.log("🚫 Alert: This sentence is not allowed inside the platform as it contains attempts for external communication!");
+    if (!choices.includes(userChoice)) {
+        alert("خطأ: المدخل غير صحيح! يجب أن تختار إما (حجر، ورقة، أو مقص) فقط.");
     } else {
-        console.log("✅ Your message is acceptable and safe to publish.");
+
+        let resultMessage = `اختيارك: ${userChoice}\nاختيار الجهاز: ${computerChoice}\n\n`;
+
+    
+        if (userChoice === computerChoice) {
+            alert(resultMessage + "إها تعادل! نفس الاختيار 🤝");
+        } else if (
+            (userChoice === "حجر" && computerChoice === "مقص") ||
+            (userChoice === "ورقة" && computerChoice === "حجر") ||
+            (userChoice === "مقص" && computerChoice === "ورقة")
+        ) {
+            alert(resultMessage + "مبروك لقد فزت في اللعبة  🎉 (الورقة تغلف الحجر، الحجر يكسر المقص، المقص يقطع الورقة).");
+        } else {
+            alert(resultMessage + "هذه المرة خسرت! الجهاز فاز عليك 🤖 حاول مرة أخرى.");
+        }
     }
 }
