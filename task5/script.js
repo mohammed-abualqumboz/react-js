@@ -1,63 +1,38 @@
 
+let users = [
+    { name: "Ahmed", email: "ahmed@example.com", type: "user" },
+    { name: "Mohammed", email: "mohammed@example.com", type: "admin" },
+    { name: "Sara", email: "sara@example.com", type: "user" },
+    { name: "Ali", email: "ali@example.com", type: "user" },
+    { name: "Fatima", email: "fatima@example.com", type: "admin" },
+    { name: "Khaled", email: "khaled@example.com", type: "user" },
+    { name: "Noor", email: "noor@example.com", type: "user" },
+    { name: "Youssef", email: "youssef@example.com", type: "admin" },
+    { name: "Mariam", email: "mariam@example.com", type: "user" },
+    { name: "Omar", email: "omar@example.com", type: "user" },
+    { name: "Aya", email: "aya@example.com", type: "admin" },
+    { name: "Ibrahim", email: "ibrahim@example.com", type: "user" },
+    { name: "Laila", email: "laila@example.com", type: "user" },
+    { name: "Hamza", email: "hamza@example.com", type: "admin" },
+    { name: "Dima", email: "dima@example.com", type: "user" }
+];
 
 
-
-let countInput = prompt("How many products do you want to buy?");
-let numProducts = parseInt(countInput);
-
-if (isNaN(numProducts) || numProducts <= 0) {
-    console.log("Please enter a valid number.");
-} else {
-    let subtotal = 0;
-    let itemsWithDiscountCount = 0;
-
-    console.log("=== Starting product entry ===");
+let regularUsersCount = 0;
+let adminsCount = 0;
 
 
-    for (let i = 1; i <= numProducts; i++) {
-        let name = prompt(`Enter product name/number${i}:`);
-        let price = parseFloat(prompt(`Enter the product price(${name}):`));
-        let quantity = parseInt(prompt(`Enter the product quantity(${name}):`));
-
-        let itemTotal = price * quantity;
-        let hasItemDiscount = false;
-
-
-        if (quantity > 10) {
-            let discount = itemTotal * 0.10;
-            itemTotal = itemTotal - discount;
-            itemsWithDiscountCount++;
-            hasItemDiscount = true;
-        }
-
-        subtotal += itemTotal;
-
-
-        console.log(`المنتج ${i}: ${name} | الكمية: ${quantity} | السعر بعد الخصم: ${itemTotal.toFixed(2)} ${hasItemDiscount ? '[تم تطبيق خصم 10%]' : ''}`);
+for (let i = 0; i < users.length; i++) {
+    if (users[i].type === "admin") {
+        adminsCount++;
+    } else if (users[i].type === "user") {
+        regularUsersCount++;
     }
-
-    let finalTotal = subtotal;
-    let extraDiscountApplied = false;
-
-    if (subtotal > 500) {
-        if (itemsWithDiscountCount < 2) {
-            let extraDiscount = subtotal * 0.20;
-            finalTotal = subtotal - extraDiscount;
-            extraDiscountApplied = true;
-        }
-    }
-
-
-    console.log("---------------------------------");
-    console.log(`Total after product discounts: ${subtotal.toFixed(2)}`);
-
-    if (extraDiscountApplied) {
-        console.log(`An additional 20% discount has been applied. (Total > 500 and number of products with volume discount = ${itemsWithDiscountCount}).`);
-    } else if (subtotal > 500) {
-        console.log(`The additional 20% discount was not applied due to the presence of...${itemsWithDiscountCount}Products eligible for a quantity discount.`);
-    }
-
-    console.log("=================================");
-    console.log(`Final total amount to be paid:${finalTotal.toFixed(2)}`);
-    console.log("=================================");
 }
+
+
+console.log(`Number of users  (user): ${regularUsersCount}`);
+console.log(`Number of managers  (admin): ${adminsCount}`); 8
+
+
+
