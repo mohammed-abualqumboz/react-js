@@ -35,4 +35,26 @@ console.log(`Number of users  (user): ${regularUsersCount}`);
 console.log(`Number of managers  (admin): ${adminsCount}`); 8
 
 
+//  حل  اخر لتاسك
+
+
+// let userCount = users.filter(user => user.type === "user").length;
+// let adminCount = users.filter(user => user.type === "admin").length;
+
+// let userCount = 0;
+// adminCount = 0;
+
+// user.forEach(function (user) {
+
+//     if (user.type === "Admin") {
+//         adminCount++;
+//     } else {
+//         userCount++;
+//     }
+// });
+
+
+// console.log("Users count: " + userCount);
+// console.log("Admins count: " + adminCount);
+
 
