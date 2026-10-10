@@ -31,7 +31,7 @@ let targetPrice = Number(userInput);
 if (userInput === null || userInput.trim() === "" || isNaN(targetPrice)) {
     console.log("Error: Please enter a valid price!");
 } else {
-
+    
     let affordableMeals = getCheaperMeals(targetPrice);
 
     console.log(`--- Meals with a price lower than ${targetPrice} ---`);
