@@ -14,7 +14,7 @@ let meals = [
 function getCheaperMeals(maxPrice) {
     let suggestions = [];
 
-   
+
     for (let i = 0; i < meals.length; i++) {
         if (meals[i].price < maxPrice) {
             suggestions.push(meals[i]);
@@ -31,7 +31,7 @@ let targetPrice = Number(userInput);
 if (userInput === null || userInput.trim() === "" || isNaN(targetPrice)) {
     console.log("Error: Please enter a valid price!");
 } else {
-   
+
     let affordableMeals = getCheaperMeals(targetPrice);
 
     console.log(`--- Meals with a price lower than ${targetPrice} ---`);

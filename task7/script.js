@@ -69,3 +69,4 @@ for (let i = 0; i < products.length; i++) {
         console.log(`[المنتج ${i + 1}] الاسم: ${currentProduct.name} | السعر: $${currentProduct.price} | التقييم: ${currentProduct.rating} (أقل من أو يساوي 3)`);
     }
 }
+

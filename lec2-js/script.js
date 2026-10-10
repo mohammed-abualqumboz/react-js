@@ -193,10 +193,7 @@
 // console.log(user);
 // {
 //   "name" : "Mohammed",
-//     "email" : "mohammed.abualqumboz2005@gmail.com",
-//       "age" : 33
-// }
-
-
+//     "email" : "mohammed.abualqumboz2005@gmail.com", //  "
+//       "age" : 33;
 
 
